@@ -1,0 +1,29 @@
+<div class="main-layout">
+    <h1 style="padding-left: 13vw;">Login</h1>
+    <div class="box-main">
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto" >
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                @for (option of filteredOptions | async; track option) {
+                <mat-option [value]="option">{{option}}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+
+        
+
+        <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="myPass" />
+            <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-flat-button (click)="verifyUser()">Login</button>
+
+    </div>
+</div>
