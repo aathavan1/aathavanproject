@@ -1,7 +1,83 @@
-.header {
-    border: 2px solid black;
-    padding-top: 0px;
-    margin: 0px;
-    /* height: 10vh; */
-    
+* {
+    background-color: #e9f1f7;
 }
+
+.panel-main {
+    padding-left: 7vw;
+    padding-top: 7vh;
+    padding-bottom: 10vh;
+}
+
+.header {
+    border: 2px solid #015278;
+    height: 77vh;
+    width: 83vw;
+}
+
+.form-for {
+    display: flex;
+    flex-direction: row;
+}
+
+.first-half {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    width: 17%;
+    height: auto;
+    padding-left: 20px;
+}
+
+.first-half label{
+    padding-top: 4.4vh;
+    font-weight: 900;
+}
+
+.first-half-entry {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    width: 30%;
+    height: auto;
+    padding-left: 20px;
+}
+
+.first-half-entry select,
+.first-half-entry input{
+    margin-top: 2.4vh;
+}
+
+
+
+.second-half {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    width: 17%;
+    height: auto;
+    padding-left: 20px;
+}
+
+
+.second-half label{
+    padding-top: 4.4vh;
+    font-weight: 900;
+}
+
+.second-half-entry {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid black; */
+    width: 30%;
+    height: auto;
+    padding-left: 20px;
+}
+
+.second-half-entry select,
+.second-half-entry input{
+    margin-top: 2.3vh;
+}
+
+
+
+

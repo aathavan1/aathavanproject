@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent {
+export class ProductComponent implements AfterViewInit {
+
+  @ViewChild('proGroup') proGroup!: ElementRef;
+
+
+  ngAfterViewInit(): void {
+  }
+
+  changeFoc(){
+    console.log('qwdqd')
+    this.proGroup.nativeElement.focus();
+  }
 
 }

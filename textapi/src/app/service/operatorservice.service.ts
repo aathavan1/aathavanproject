@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Operator, operatorList } from '../model/operator.service'
+import { Operator} from '../model/operator.service'
 import { Observable } from 'rxjs';
 import { api } from '../appconstant.component'
 
@@ -14,8 +14,5 @@ export class OperatorService {
   getOperator(): Observable<Operator[]> {
     return this.httpClient.get<Operator[]>(api+'/getoper');
   }
-
-  
-
 
 }

@@ -9,7 +9,9 @@ import { AsyncPipe } from '@angular/common'
 import { Observable } from 'rxjs';
 import { startWith, map, zipAll } from 'rxjs/operators';
 import { OperatorService } from '../service/operatorservice.service';
-import { Operator} from '../model/operator.service'
+import { Operator } from '../model/operator.service'
+import { setLogin } from '../appconstant.component'
+import { AppComponent } from '../app.component'
 
 
 @Component({
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor() {this.loadUsers()}
+  constructor() { this.loadUsers() }
 
 
   ngOnInit() {
@@ -71,11 +73,19 @@ export class LoginComponent implements OnInit {
   }
 
 
+  loginStat = new setLogin;
+  // appComp = new AppComponent;
+
 
   verifyUser() {
     try {
+
       this.checkValidUser();
-      alert('Sucess')
+      window.alert('Sucess')
+
+      this.loginStat.setLogin(true)
+      // this.appComp.setVisibl(this.loginStat.getLogin())
+      console.log(this.loginStat.getLogin())
 
     }
     catch (error) {
@@ -89,7 +99,7 @@ export class LoginComponent implements OnInit {
     for (let i = 0; i < this.username.length; i++) {
       if (this.username[i] == this.myControl.value) {
         check = true;
-        if (this.myPass.value != this.operator[i].password){
+        if (this.myPass.value != this.operator[i].password) {
           this.myPass.setValue('')
           throw new Error('Invalid Password')
         }

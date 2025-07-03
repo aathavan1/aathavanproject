@@ -1,7 +1,98 @@
 <div class="panel-main">
     <div class="header">
-        <p style="font-size: x-large;font-weight: 700;">Product</p>
-        <img src="../../assets/img/logosmall.png" >
+
+        <form class="form-for">
+            <div class="first-half">
+                <label>Product Group</label>
+                <label>Quality Name</label>
+                <label>Style Name</label>
+                <label>SizeGroup</label>
+                <label>Size</label>
+                <label>ProductCode</label>
+                <label>ProductName</label>
+                <label>ShortName</label>
+                <label>BrandName</label>
+
+
+            </div>
+            <div class="first-half-entry">
+
+                <select class="form-select" #proGroup>
+                    <option>ProductGroup</option>
+                </select>
+
+
+                <select class="form-select" @quantityName>
+                    <option>QuantityName</option>
+                </select>
+
+
+                <select class="form-select">
+                    <option>StyleName</option>
+                </select>
+
+
+                <select class="form-select">
+                    <option>SizeGroup</option>
+                </select>
+
+
+                <select class="form-select">
+                    <option>SizeCode</option>
+                </select>
+
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+
+                <select class="form-select">
+                    <option>BrandName</option>
+                </select>
+            </div>
+
+            <div class="second-half">
+                <label>OrderLevel</label>
+                <label>PricePerPack</label>
+                <label>M.R.P.Rate</label>
+                <label>SellingRate</label>
+                <label>PurchaseRate</label>
+                <label>Taxable</label>
+                <label>AllowDisc</label>
+                <label>HsnCode</label>
+                <label>Narration</label>
+            </div>
+
+            <div class="second-half-entry">
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <input type="text" class="form-control">
+                <select class="form-select">
+                    <option>ProductGroup</option>
+                </select>
+
+                <select class="form-select">
+                    <option>ProductGroup</option>
+                </select>
+
+                <select class="form-select">
+                    <option>ProductGroup</option>
+                </select>
+
+
+                <input type="text" class="form-control">
+
+            </div>
+
+        </form>
     </div>
+
+        <div class="btn-for-form">
+            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
+            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
+            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
+            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
+        </div>
 
 </div>
