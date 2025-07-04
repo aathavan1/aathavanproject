@@ -28,4 +28,9 @@ public class OperatorServiceImpl implements OperatorService {
     public void saveOperator(Operator operator) throws Exception {
 
     }
+
+    @Override
+    public String getuser(String operCode) throws Exception {
+        return operatorDao.getUser(operCode);
+    }
 }

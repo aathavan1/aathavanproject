@@ -1,4 +1,4 @@
-<div class="panel-main">
+<div class="panel-main" *ngIf="setVisibl">
     <div class="header">
 
         <form class="form-for">
@@ -18,27 +18,32 @@
             <div class="first-half-entry">
 
                 <select class="form-select" #proGroup>
-                    <option>ProductGroup</option>
+                    <option *ngFor="let item of productGroup" value={{item.productgroupcode}}> {{item.productgroupname}}
+                    </option>
                 </select>
 
 
-                <select class="form-select" @quantityName>
-                    <option>QuantityName</option>
-                </select>
-
-
-                <select class="form-select">
-                    <option>StyleName</option>
-                </select>
-
-
-                <select class="form-select">
-                    <option>SizeGroup</option>
+                <select class="form-select" >
+                    <option *ngFor="let item of quality" value={{item.qualitycode}}> {{item.qualityname}}
+                    </option>
                 </select>
 
 
                 <select class="form-select">
-                    <option>SizeCode</option>
+                    <option *ngFor="let item of style" value={{item.stylecode}}> {{item.stylename}}
+                    </option>
+                </select>
+
+
+                <select class="form-select">
+                    <option *ngFor="let item of sizegroup" value={{item.sizegroupcode}}> {{item.sizegroupname}}
+                    </option>
+                </select>
+
+
+                <select class="form-select">
+                    <option *ngFor="let item of size" value={{item.sizecode}}> {{item.sizename}}
+                    </option>
                 </select>
 
                 <input type="text" class="form-control">
@@ -88,11 +93,15 @@
         </form>
     </div>
 
-        <div class="btn-for-form">
-            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
-            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
-            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
-            <button class="btn btn-primary" (click)="changeFoc()">Save</button>
-        </div>
+    <div class="btn-for-form">
+        <button class="btn btn-primary" (click)="changeFoc()">Add</button>
+        <button class="btn btn-primary" (click)="changeFoc()" disabled="true">View</button>
+        <button class="btn btn-primary" (click)="changeFoc()" disabled="true">Edit</button>
+        <button class="btn btn-primary" (click)="changeFoc()">Clear</button>
+        <button class="btn btn-primary" onclick="window.location.href='/panelmain'">Close</button>
+    </div>
 
+</div>
+<div *ngIf="!setVisibl">
+    <h1 style="background-color: white;text-align: center;">Invalid Login Credentials</h1>
 </div>

@@ -11,4 +11,6 @@ public interface OperatorService {
 
 
     public void saveOperator(Operator operator) throws Exception;
+
+    public String getuser(String operCode) throws Exception;
 }

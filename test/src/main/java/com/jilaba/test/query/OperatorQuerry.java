@@ -21,4 +21,9 @@ public class OperatorQuerry {
         return sb.toString();
     }
 
+    public String getUser() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("select opername from operator where opercode = ? limit 1 ");
+        return sb.toString();
+    }
 }

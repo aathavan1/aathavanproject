@@ -32,7 +32,13 @@ public class ConnectionConfig {
     @Bean(name = "master")
     DataSource getmasterDataSource() {
         return getDataSourceFor("mhosmaster");
-}
+    }
+
+
+    @Bean(name = "rathmaster")
+    DataSource getRathMasterDataSource() {
+        return getDataSourceFor("rathmaster");
+    }
 
 
 }

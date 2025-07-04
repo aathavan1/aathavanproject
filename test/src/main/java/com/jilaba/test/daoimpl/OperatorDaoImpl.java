@@ -28,6 +28,11 @@ public class OperatorDaoImpl implements OperatorDao {
         return new JdbcTemplate(master).query(operatorQuerry.loadOperator(active), BeanPropertyRowMapper.newInstance(Operator.class));
     }
 
+    @Override
+    public String getUser(String operCode) throws Exception {
+        return new JdbcTemplate(master).queryForObject(operatorQuerry.getUser(),new Object[]{operCode},String.class);
+    }
+
 
     public void saveOperator(List<Map<String, Object>> lstObject) throws Exception {
         new NamedParameterJdbcTemplate(master).batchUpdate(operatorQuerry.saveOperator(), lstObject.toArray(new HashMap[0]));

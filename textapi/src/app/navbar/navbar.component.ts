@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { operCode } from '../appconstant'
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  operco: number = 0
+
+  ngOnInit(): void {
+    this.operco = operCode;
+  }
+
 
 }

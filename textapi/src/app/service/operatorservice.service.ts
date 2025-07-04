@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Operator} from '../model/operator.service'
+import { Operator} from '../model/operator'
 import { Observable } from 'rxjs';
-import { api } from '../appconstant.component'
+import { api } from '../appconstant'
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class OperatorService {
   getOperator(): Observable<Operator[]> {
     return this.httpClient.get<Operator[]>(api+'/getoper');
   }
+
+  // checkOperator():Observable<string>{
+  //   // return this.httpClient.get<string>(api+'/')
+  // }
 
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, signal} from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
@@ -9,9 +9,9 @@ import { AsyncPipe } from '@angular/common'
 import { Observable } from 'rxjs';
 import { startWith, map, zipAll } from 'rxjs/operators';
 import { OperatorService } from '../service/operatorservice.service';
-import { Operator } from '../model/operator.service'
-import { setLogin } from '../appconstant.component'
-import { AppComponent } from '../app.component'
+import { Operator } from '../model/operator'
+import { setLogin } from '../appconstant'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   operator: Operator[] = [];
   filteredOptions!: Observable<string[]>;
 
-
+  router: Router = inject(Router);
 
   constructor() { this.loadUsers() }
 
@@ -81,11 +81,7 @@ export class LoginComponent implements OnInit {
     try {
 
       this.checkValidUser();
-      window.alert('Sucess')
 
-      this.loginStat.setLogin(true)
-      // this.appComp.setVisibl(this.loginStat.getLogin())
-      console.log(this.loginStat.getLogin())
 
     }
     catch (error) {
@@ -96,6 +92,7 @@ export class LoginComponent implements OnInit {
 
   checkValidUser() {
     let check: boolean = false;
+    let operCode=0;
     for (let i = 0; i < this.username.length; i++) {
       if (this.username[i] == this.myControl.value) {
         check = true;
@@ -103,12 +100,22 @@ export class LoginComponent implements OnInit {
           this.myPass.setValue('')
           throw new Error('Invalid Password')
         }
+        else{
+          operCode=this.operator[i].opercode;
+        }
       }
     }
 
     if (!check) {
       this.myControl.setValue('');
       throw new Error('Invalid Operator')
+    }
+    else{
+      // this.router.navigate(['/product/'+operCode])
+
+      this.loginStat.setLogin(operCode)
+      this.router.navigate(['/panelmain'])
+
     }
 
 
