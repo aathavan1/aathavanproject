@@ -13,5 +13,7 @@ export interface product {
     productname: string;
     brandcode: string;
     brandname: string;
+    hsncode: string;
+    hsndescription: string;
 }
 

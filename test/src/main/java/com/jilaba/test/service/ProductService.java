@@ -20,5 +20,7 @@ public interface ProductService {
 
     public List<CommonModel> getBrand() throws Exception;
 
+    public List<CommonModel> getHsn() throws Exception;
+
 
 }

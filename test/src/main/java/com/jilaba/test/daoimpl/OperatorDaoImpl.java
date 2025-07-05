@@ -4,6 +4,8 @@ import com.jilaba.test.dao.OperatorDao;
 import com.jilaba.test.model.Operator;
 import com.jilaba.test.query.OperatorQuerry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -30,7 +32,11 @@ public class OperatorDaoImpl implements OperatorDao {
 
     @Override
     public String getUser(String operCode) throws Exception {
-        return new JdbcTemplate(master).queryForObject(operatorQuerry.getUser(),new Object[]{operCode},String.class);
+        try {
+            return new JdbcTemplate(master).queryForObject(operatorQuerry.getUser(), new Object[]{operCode}, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
 

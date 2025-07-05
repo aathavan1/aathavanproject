@@ -50,4 +50,9 @@ public class ProductServiceImpl implements ProductService {
     public List<CommonModel> getBrand() throws Exception {
         return commonDao.getBrand();
     }
+
+    @Override
+    public List<CommonModel> getHsn() throws Exception {
+        return commonDao.getHsn();
+    }
 }

@@ -16,11 +16,9 @@ export class ProductService {
     return this.httpClient.get<product[]>(this.productEntryApi + "productgroup");
   }
 
-
   getProduct(): Observable<product[]> {
     return this.httpClient.get<product[]>(this.productEntryApi + "product");
   }
-
 
   getSize(): Observable<product[]> {
     return this.httpClient.get<product[]>(this.productEntryApi + "size");
@@ -30,21 +28,20 @@ export class ProductService {
     return this.httpClient.get<product[]>(this.productEntryApi + "sizegroup");
   }
 
-
   getQuality(): Observable<product[]> {
     return this.httpClient.get<product[]>(this.productEntryApi + "quality");
   }
-
 
   getStyle(): Observable<product[]> {
     return this.httpClient.get<product[]>(this.productEntryApi + "style");
   }
 
-
-
   getBrand(): Observable<product[]> {
     return this.httpClient.get<product[]>(this.productEntryApi + "brand");
   }
 
+  getHsn(): Observable<product[]> {
+    return this.httpClient.get<product[]>(this.productEntryApi + "hsn");
+  }
 
 }

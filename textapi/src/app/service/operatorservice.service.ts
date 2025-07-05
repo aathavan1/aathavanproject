@@ -15,8 +15,8 @@ export class OperatorService {
     return this.httpClient.get<Operator[]>(api+'/getoper');
   }
 
-  // checkOperator():Observable<string>{
-  //   // return this.httpClient.get<string>(api+'/')
-  // }
+  checkOperator(operCode:string){
+    return this.httpClient.get(api+'/checkuser/'+operCode,{responseType:'text'})
+  }
 
 }

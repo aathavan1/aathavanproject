@@ -36,7 +36,7 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/getuser/{id}")
+    @GetMapping("/checkuser/{id}")
     private String checkUser(@PathVariable String id)throws Exception {
         try{
             return operatorService.getuser(id);

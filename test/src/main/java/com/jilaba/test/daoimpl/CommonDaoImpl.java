@@ -55,4 +55,9 @@ public class CommonDaoImpl implements CommonDao {
     public List<CommonModel> getBrand() throws Exception {
         return new JdbcTemplate(rathmaster).query(commonQuery.getBrand(), BeanPropertyRowMapper.newInstance(CommonModel.class));
     }
+
+    @Override
+    public List<CommonModel> getHsn() throws Exception {
+        return new JdbcTemplate(rathmaster).query(commonQuery.getHsn(), BeanPropertyRowMapper.newInstance(CommonModel.class));
+    }
 }

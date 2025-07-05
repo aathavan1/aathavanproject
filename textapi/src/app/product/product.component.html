@@ -1,7 +1,7 @@
 <div class="panel-main" *ngIf="setVisibl">
     <div class="header">
 
-        <form class="form-for">
+        <form class="form-for" [formGroup]="productForm">
             <div class="first-half">
                 <label>Product Group</label>
                 <label>Quality Name</label>
@@ -17,41 +17,42 @@
             </div>
             <div class="first-half-entry">
 
-                <select class="form-select" #proGroup>
-                    <option *ngFor="let item of productGroup" value={{item.productgroupcode}}> {{item.productgroupname}}
+                <select class="form-select" #proGroup formControlName="productgroupcode">
+                    <option *ngFor="let item of productGroup" [value]="item.productgroupcode">{{item.productgroupname}}
                     </option>
                 </select>
 
 
-                <select class="form-select" >
-                    <option *ngFor="let item of quality" value={{item.qualitycode}}> {{item.qualityname}}
+                <select class="form-select" formControlName="qualitycode">
+                    <option *ngFor="let item of quality" [value]=item.qualitycode> {{item.qualityname}}
                     </option>
                 </select>
 
 
-                <select class="form-select">
-                    <option *ngFor="let item of style" value={{item.stylecode}}> {{item.stylename}}
+                <select class="form-select" formControlName="stylecode">
+                    <option *ngFor="let item of style" [value]=item.stylecode> {{item.stylename}}
                     </option>
                 </select>
 
 
-                <select class="form-select">
-                    <option *ngFor="let item of sizegroup" value={{item.sizegroupcode}}> {{item.sizegroupname}}
+                <select class="form-select" formControlName="sizegroupcode">
+                    <option *ngFor="let item of sizegroup" [value]=item.sizegroupcode> {{item.sizegroupname}}
                     </option>
                 </select>
 
 
-                <select class="form-select">
-                    <option *ngFor="let item of size" value={{item.sizecode}}> {{item.sizename}}
+                <select class="form-select" formControlName="sizecode">
+                    <option *ngFor="let item of size" [value]=item.sizecode> {{item.sizename}}
                     </option>
                 </select>
 
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="productcode">
+                <input type="text" class="form-control" formControlName="productname">
+                <input type="text" class="form-control" formControlName="shortname">
 
-                <select class="form-select">
-                    <option>BrandName</option>
+                <select class="form-select" formControlName="brandcode">
+                    <option *ngFor="let item of brand" [value]="item.brandcode">
+                        {{item.brandname}}</option>
                 </select>
             </div>
 
@@ -68,23 +69,27 @@
             </div>
 
             <div class="second-half-entry">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
-                <select class="form-select">
-                    <option>ProductGroup</option>
+                <input type="text" class="form-control" formControlName="orderlevel">
+
+               
+                <input type="text" class="form-control" formControlName="pieceperpack">
+                <input type="text" class="form-control" formControlName="mrprate">
+                <input type="text" class="form-control" formControlName="sellingrate">
+                <input type="text" class="form-control" formControlName="purchaserate">
+                <select class="form-select" style="width: 10vw;" formControlName="taxable">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
                 </select>
 
-                <select class="form-select">
-                    <option>ProductGroup</option>
+                <select class="form-select" formControlName="allowdisc">
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
                 </select>
 
-                <select class="form-select">
-                    <option>ProductGroup</option>
+                <select class="form-select" formControlName="hsncode">
+                    <option *ngFor="let item of hsn" [value]="item.hsncode" [selected]="item.hsncode== hsn[1].hsncode">
+                        {{item.hsndescription}}</option>
                 </select>
-
 
                 <input type="text" class="form-control">
 
@@ -95,6 +100,7 @@
 
     <div class="btn-for-form">
         <button class="btn btn-primary" (click)="changeFoc()">Add</button>
+        <button class="btn btn-primary" (click)="saveData()">Save</button>
         <button class="btn btn-primary" (click)="changeFoc()" disabled="true">View</button>
         <button class="btn btn-primary" (click)="changeFoc()" disabled="true">Edit</button>
         <button class="btn btn-primary" (click)="changeFoc()">Clear</button>
