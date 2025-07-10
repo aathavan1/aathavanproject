@@ -1,6 +1,7 @@
 package com.jilaba.test.service;
 
 import com.jilaba.test.model.CommonModel;
+import com.jilaba.test.model.Product;
 
 import java.util.List;
 
@@ -21,6 +22,10 @@ public interface ProductService {
     public List<CommonModel> getBrand() throws Exception;
 
     public List<CommonModel> getHsn() throws Exception;
+
+    public void saveProduct(Product product) throws Exception;
+
+    public List<Product> getProductView() throws Exception;
 
 
 }

@@ -2,12 +2,10 @@ package com.jilaba.test.controller;
 
 
 import com.jilaba.test.model.CommonModel;
+import com.jilaba.test.model.Product;
 import com.jilaba.test.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -86,6 +84,27 @@ public class ProductController {
     public List<CommonModel> getHsn() throws Exception {
         try {
             return productService.getHsn();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+
+    @PostMapping("/save")
+    public String saveProduct(@RequestBody Product product) {
+        try {
+            productService.saveProduct(product);
+            return "Sucess";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @GetMapping("/viewproduct")
+    public List<Product> viewProduct() throws Exception {
+        try {
+
+            return productService.getProductView();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { operCode } from '../appconstant'
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +9,18 @@ import { operCode } from '../appconstant'
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-  operco: number = 0
+  operco!: string;
+
+  router:Router=inject(Router)
 
   ngOnInit(): void {
-    this.operco = operCode;
+    this.operco = localStorage.getItem('opercode')!;
   }
 
+  logOut(){
+    localStorage.setItem('opercode','0')
+    this.router.navigate(['/'])
+
+  }
 
 }

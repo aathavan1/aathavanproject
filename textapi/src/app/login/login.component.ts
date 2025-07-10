@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal} from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
@@ -7,10 +7,9 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { AsyncPipe } from '@angular/common'
 import { Observable } from 'rxjs';
-import { startWith, map, zipAll } from 'rxjs/operators';
+import { startWith, map } from 'rxjs/operators';
 import { OperatorService } from '../service/operatorservice.service';
 import { Operator } from '../model/operator'
-import { setLogin } from '../appconstant'
 import { Router } from '@angular/router';
 
 
@@ -31,15 +30,20 @@ export class LoginComponent implements OnInit {
 
   operatorService: OperatorService = inject(OperatorService)
 
+
+  // appComp = new AppComponent;
+
   myControl = new FormControl('');
   myPass = new FormControl('');
-  username: string[] = [];
-  operator: Operator[] = [];
+  arrUserName: string[] = [];
+  lstOperator: Operator[] = [];
   filteredOptions!: Observable<string[]>;
 
   router: Router = inject(Router);
 
-  constructor() { this.loadUsers() }
+  constructor() {
+    this.loadUsers()
+  }
 
 
   ngOnInit() {
@@ -53,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.username.filter(username => username.toLowerCase().includes(filterValue));
+    return this.arrUserName.filter(username => username.toLowerCase().includes(filterValue));
   }
 
   hide = signal(true);
@@ -65,16 +69,14 @@ export class LoginComponent implements OnInit {
 
   loadUsers() {
     this.operatorService.getOperator().subscribe(data => {
-      this.operator = data;
-      for (let i = 0; i < this.operator.length; i++) {
-        this.username.push(this.operator[i].opername)
+      this.lstOperator = data;
+      for (let i = 0; i < this.lstOperator.length; i++) {
+        this.arrUserName.push(this.lstOperator[i].opername)
       }
     })
   }
 
 
-  loginStat = new setLogin;
-  // appComp = new AppComponent;
 
 
   verifyUser() {
@@ -90,39 +92,48 @@ export class LoginComponent implements OnInit {
   }
 
 
-  checkValidUser() {
-    let check: boolean = false;
-    let operCode=0;
-    for (let i = 0; i < this.username.length; i++) {
-      if (this.username[i] == this.myControl.value) {
-        check = true;
-        if (this.myPass.value != this.operator[i].password) {
-          this.myPass.setValue('')
-          throw new Error('Invalid Password')
-        }
-        else{
-          operCode=this.operator[i].opercode;
-        }
-      }
+  async checkValidUser() {
+    let operCode = 0;
+    let login = false;
+
+
+    if(this.myControl.value==''){
+      window.alert('Enter OperName')
+      return;
     }
 
-    if (!check) {
-      this.myControl.setValue('');
+    if(this.myPass.value==''){
+      window.alert('Enter Password')
+      return;
+    }
+
+    if (this.arrUserName.filter(user => user == this.myControl.value).length == 0) {
       throw new Error('Invalid Operator')
     }
-    else{
-      // this.router.navigate(['/product/'+operCode])
 
-      this.loginStat.setLogin(operCode)
-      this.router.navigate(['/panelmain'])
-
+    for (let i = 0; i < this.arrUserName.length; i++) {
+      if (this.lstOperator[i].opername == this.myControl.value) {
+        operCode = this.lstOperator[i].opercode;
+        break;
+      }
     }
+    (await this.operatorService.checkLogin(operCode.toString(), this.myPass.value!)).subscribe(
+      data => {
+        login = data;
+      }
+    )
 
+    setTimeout(() => {
+      if (!login) {
+        window.alert('Wrong password')
+        this.myPass.setValue('')
+        return
+      }
+      localStorage.setItem('opercode', operCode.toString());
+      this.router.navigate(['/panelmain'])
+    }, 100);
 
   }
-
-
-
 
 
 }

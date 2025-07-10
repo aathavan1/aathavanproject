@@ -15,5 +15,8 @@ export interface product {
     brandname: string;
     hsncode: string;
     hsndescription: string;
+    shortname:string;
+    allowdiscount:string;
+    active:string;
 }
 

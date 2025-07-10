@@ -1,4 +1,5 @@
-<div class="panel-main" *ngIf="setVisibl">
+
+<div class="panel-main">
     <div class="header">
 
         <form class="form-for" [formGroup]="productForm">
@@ -8,7 +9,7 @@
                 <label>Style Name</label>
                 <label>SizeGroup</label>
                 <label>Size</label>
-                <label>ProductCode</label>
+                <label>BarCode</label>
                 <label>ProductName</label>
                 <label>ShortName</label>
                 <label>BrandName</label>
@@ -46,7 +47,7 @@
                     </option>
                 </select>
 
-                <input type="text" class="form-control" formControlName="productcode">
+                <input type="text" class="form-control" formControlName="barcode">
                 <input type="text" class="form-control" formControlName="productname">
                 <input type="text" class="form-control" formControlName="shortname">
 
@@ -75,13 +76,13 @@
                 <input type="text" class="form-control" formControlName="pieceperpack">
                 <input type="text" class="form-control" formControlName="mrprate">
                 <input type="text" class="form-control" formControlName="sellingrate">
-                <input type="text" class="form-control" formControlName="purchaserate">
+                <input type="text" class="form-control" formControlName="purrate">
                 <select class="form-select" style="width: 10vw;" formControlName="taxable">
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                 </select>
 
-                <select class="form-select" formControlName="allowdisc">
+                <select class="form-select" formControlName="allowdiscount">
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                 </select>
@@ -91,7 +92,7 @@
                         {{item.hsndescription}}</option>
                 </select>
 
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="narration">
 
             </div>
 
@@ -101,13 +102,10 @@
     <div class="btn-for-form">
         <button class="btn btn-primary" (click)="changeFoc()">Add</button>
         <button class="btn btn-primary" (click)="saveData()">Save</button>
-        <button class="btn btn-primary" (click)="changeFoc()" disabled="true">View</button>
+        <button class="btn btn-primary" onclick="window.location.href='/productview'">View</button>
         <button class="btn btn-primary" (click)="changeFoc()" disabled="true">Edit</button>
-        <button class="btn btn-primary" (click)="changeFoc()">Clear</button>
+        <button class="btn btn-primary" (click)="setDefaultValues()">Clear</button>
         <button class="btn btn-primary" onclick="window.location.href='/panelmain'">Close</button>
     </div>
 
-</div>
-<div *ngIf="!setVisibl">
-    <h1 style="background-color: white;text-align: center;">Invalid Login Credentials</h1>
 </div>

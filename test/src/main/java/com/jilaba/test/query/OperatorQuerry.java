@@ -13,6 +13,12 @@ public class OperatorQuerry {
         return sb.toString();
     }
 
+    public String checkLogin() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("select opername from operator where opercode = ? and password =? ");
+        return sb.toString();
+    }
+
     public String saveOperator() {
         StringBuilder sb = new StringBuilder();
         sb.append("insert into operator (opername,opercode,active,operpass )");
@@ -21,9 +27,12 @@ public class OperatorQuerry {
         return sb.toString();
     }
 
-    public String getUser() {
+    public String getUser(String password) {
         StringBuilder sb = new StringBuilder();
-        sb.append("select opername from operator where opercode = ? limit 1 ");
+        sb.append("select opername from operator where opercode = ? \n");
+        if(password!=null && !password.isEmpty())
+        sb.append(" and password = '").append(password).append("' \n");
+        sb.append("limit 1 \n");
         return sb.toString();
     }
 }
