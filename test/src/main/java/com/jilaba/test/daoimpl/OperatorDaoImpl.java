@@ -1,11 +1,14 @@
 package com.jilaba.test.daoimpl;
 
+import com.jilaba.security.JilabaHosieryAesED;
+import com.jilaba.security.JilabaStoresAesED;
 import com.jilaba.test.dao.OperatorDao;
 import com.jilaba.test.model.Operator;
 import com.jilaba.test.query.OperatorQuerry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -31,11 +34,15 @@ public class OperatorDaoImpl implements OperatorDao {
     }
 
     @Override
-    public String getUser(String operCode) throws Exception {
+    public String getUser(String operCode, String password) throws Exception {
         try {
-            return new JdbcTemplate(master).queryForObject(operatorQuerry.getUser(), new Object[]{operCode}, String.class);
+            password = JilabaStoresAesED.encrypt(password);
+            return new JdbcTemplate(master).queryForObject(operatorQuerry.getUser(password), new Object[]{operCode}, String.class);
         } catch (EmptyResultDataAccessException e) {
             return null;
+        }
+        catch (IncorrectResultSizeDataAccessException e) {
+            return "1";
         }
     }
 

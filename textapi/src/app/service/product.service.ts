@@ -37,11 +37,29 @@ export class ProductService {
   }
 
   getBrand(): Observable<product[]> {
-    return this.httpClient.get<product[]>(this.productEntryApi + "brand");
+    return this.httpClient.get<product[]>(this.productEntryApi + 'brand');
   }
 
   getHsn(): Observable<product[]> {
-    return this.httpClient.get<product[]>(this.productEntryApi + "hsn");
+    return this.httpClient.get<product[]>(this.productEntryApi + 'hsn');
+  }
+
+  async saveProduct(product: any): Promise<Observable<any>> {
+    const urls = this.productEntryApi + 'save'
+    return await this.httpClient.post(urls, product);
+  }
+
+  getProductView(): Observable<product[]> {
+    return this.httpClient.get<product[]>(this.productEntryApi + 'viewproduct')
+  }
+
+  async deleteProduct(productCode: string): Promise<Observable<any>> {
+    return await this.httpClient.delete(this.productEntryApi + 'delete/' + productCode)
+  }
+
+  async updateProduct(product:product):Promise<Observable<any>>{
+    const urls = this.productEntryApi + 'update'
+    return await this.httpClient.put(urls,product)
   }
 
 }

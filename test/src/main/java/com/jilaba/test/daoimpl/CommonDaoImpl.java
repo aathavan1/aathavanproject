@@ -21,6 +21,7 @@ public class CommonDaoImpl implements CommonDao {
     private CommonQuery commonQuery;
 
 
+
     @Override
     public List<CommonModel> getProductGroup() throws Exception {
         return new JdbcTemplate(rathmaster).query(commonQuery.getProductGroup(), BeanPropertyRowMapper.newInstance(CommonModel.class));

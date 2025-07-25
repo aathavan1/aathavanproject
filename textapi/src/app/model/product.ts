@@ -15,5 +15,17 @@ export interface product {
     brandname: string;
     hsncode: string;
     hsndescription: string;
+    shortname: string;
+    allowdiscount: string;
+    active: string;
+    taxable: string;
+    mrprate: string;
+    purrate: string;
+    sellingrate: string;
+    narration: string;
+    pieceperpack: string;
+    orderlevel: string;
 }
+
+
 

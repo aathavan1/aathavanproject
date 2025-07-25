@@ -1,0 +1,78 @@
+<div class="panel-main">
+  <div class="paneltable">
+    <table>
+      <thead>
+        <tr>
+          <th>Sno</th>
+          <th>ProductName</th>
+          <th>ProductCode</th>
+          <th>ShortName</th>
+          <th>BrandName</th>
+          <th>OrderLevel</th>
+          <th>MrpRate</th>
+          <th>SellingRate</th>
+          <th>PurRate</th>
+          <th>Active</th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of lstProduct; let i = index">
+          <td style="text-align: center">{{ i + 1 }}</td>
+          <td>
+            <input type="text" [(ngModel)]="item.productname" />
+          </td>
+          <td>{{ item.productcode }}</td>
+          <td>
+            <input type="text" [(ngModel)]="item.shortname" />
+          </td>
+          <td>{{ item.brandname }}</td>
+          <td>
+
+            <input type="text" [(ngModel)]="item.orderlevel" />
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="item.mrprate" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="item.sellingrate" />
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="item.purrate" />
+          </td>
+          <td style="text-align: center">{{ item.active }}</td>
+          <td>
+            <button
+              class="btn btn-danger"
+              style="margin: 10px; height: 30px"
+              (click)="deleteValue(item.productcode)"
+            >
+              Delete
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              style="margin: 10px; height: 30px"
+              (click)="editValue(item)"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="btn-for-form">
+    <button class="btn btn-primary" (click)="changeFoc()">Add</button>
+    <button class="btn btn-primary" disabled="true">Save</button>
+    <button class="btn btn-primary" disabled="true">View</button>
+    <button class="btn btn-primary" disabled="true">Edit</button>
+    <button class="btn btn-primary" disabled="true">Clear</button>
+    <button class="btn btn-primary" onclick="window.location.href='/panelmain'">
+      Close
+    </button>
+  </div>
+</div>

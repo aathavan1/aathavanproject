@@ -1,0 +1,16 @@
+<div class="dialouge">
+  <div style="padding: 20px">
+    <p>Are You Sure Do You Want To Delete?</p>
+  </div>
+  <div class="btn-edit-delete">
+    <button mat-button (click)="setFalse()">NO</button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkfocusinitial
+      (click)="setTrue()"
+    >
+      YES
+    </button>
+  </div>
+</div>

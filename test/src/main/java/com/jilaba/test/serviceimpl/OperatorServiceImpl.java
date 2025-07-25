@@ -30,7 +30,7 @@ public class OperatorServiceImpl implements OperatorService {
     }
 
     @Override
-    public String getuser(String operCode) throws Exception {
-        return operatorDao.getUser(operCode);
+    public String getuser(String operCode,String password) throws Exception {
+        return operatorDao.getUser(operCode, password);
     }
 }
