@@ -1,18 +1,20 @@
+
 import { ChangeDetectionStrategy, Component, ElementRef, inject, model, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../service/product.service'
 import { OperatorService } from '../service/operatorservice.service';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { product } from '../model/product'
-import { NgFor } from '@angular/common';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductComponent } from '../product/product.component'
 
+import { NgFor } from '@angular/common';
+
 @Component({
   selector: 'app-productview',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor, MatButtonModule,FormsModule],
+  imports: [ReactiveFormsModule, NgFor, MatButtonModule, FormsModule],
   templateUrl: './productview.component.html',
   styleUrl: './productview.component.css'
 })
@@ -73,17 +75,20 @@ export class ProductviewComponent implements OnInit {
 
   async editValue(productValu: product) {
     // this.routerNav.navigate(['product/' + localStorage.getItem('opercode')])
-    // this.productEntry.productEdit(productValu)
+    this.routerNav.navigate(['product/12341234'])
 
 
-     (await this.productService.updateProduct(productValu)).subscribe(
-      data=>{
+    this.productEntry.productEdit(productValu)
 
-        window.alert('Updated Sucessfully...')
-        console.log(data)
-        
-      }
-     )
+
+    // (await this.productService.updateProduct(productValu)).subscribe(
+    //   data => {
+
+    //     window.alert('Updated Sucessfully...')
+    //     console.log(data)
+
+    //   }
+    // )
 
   }
 
@@ -139,3 +144,4 @@ export class DialogAnimationsExampleDialog {
 export interface DialougData {
   yesOrNo: boolean
 }
+

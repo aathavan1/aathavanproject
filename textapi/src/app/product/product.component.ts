@@ -7,7 +7,6 @@ import { OperatorService } from '../service/operatorservice.service';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
-
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -64,32 +63,35 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
 
     let opercode = localStorage.getItem('opercode')
+    let textId=this.router.snapshot.paramMap.get('id')
 
-    this.operatorService.checkOperator(opercode == null ? '0' : opercode)
-      .subscribe(data => {
-        if (data.length == 0) {
-          window.alert('Invalid login')
-          this.routerNav.navigate(['/']);
-        }
-        else {
-          this.loginOperCode = opercode == null ? '0' : opercode;
-        }
-      })
+    if (textId != '12341234') {
+      this.editFlag.set(false)
 
-    this.loadProductGroup();
-    setTimeout(() => {
-      if (!this.editFlag())
+      this.operatorService.checkOperator(opercode == null ? '0' : opercode)
+        .subscribe(data => {
+          if (data.length == 0) {
+            window.alert('Invalid login')
+            this.routerNav.navigate(['/']);
+          }
+          else {
+            this.loginOperCode = opercode == null ? '0' : opercode;
+          }
+        })
+      this.loadProductGroup(); 
+      setTimeout(() => {
         this.setDefaultValues();
-      // else
-      //   this.setEditedValue()
+      }, 300);
+    }
+    else {
+      this.loadProductGroup();
+    }
 
-    }, 300);
+
   }
   setDefaultValues() {
 
-    if (!this.editFlag()) {
-      console.log(this.editProduct)
-      console.log('notedit')
+    if (!this.editFlag()) { 
 
       this.productForm.patchValue({
         productgroupcode: this.productGroup[0].productgroupcode,
@@ -125,8 +127,7 @@ export class ProductComponent implements OnInit {
       // throw new Error('No value Found for this Product')
       console.log('No value Found for this Product')
       return;
-    }
-    // console.log(this.editProduct.productname)
+    } 
 
     this.productForm.patchValue({
       productgroupcode: value.productgroupcode,
@@ -149,11 +150,13 @@ export class ProductComponent implements OnInit {
       orderlevel: value.orderlevel
     })
 
+    console.log(this.productForm.value)
   }
 
 
 
   loadProductGroup() {
+    console.log('productloaded')
     this.productService.getProductGroup().subscribe(data => {
       this.productGroup = data;
     })
@@ -249,16 +252,9 @@ export class ProductComponent implements OnInit {
 
     setTimeout(() => {
       this.setEditedValue(value)
-
-    }, 600)
-
+    }, 1000)
 
     // this.setEditedValue()
   }
-
-
-
-
-
 
 }
