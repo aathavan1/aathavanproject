@@ -1,4 +1,4 @@
-<div class="panel-main">
+<div class="panel-main" id="print-section">
   <div class="paneltable">
     <table>
       <thead>
@@ -20,27 +20,14 @@
       <tbody>
         <tr *ngFor="let item of lstProduct; let i = index">
           <td style="text-align: center">{{ i + 1 }}</td>
-          <td>
-            <input type="text" [(ngModel)]="item.productname" />
-          </td>
+          <td>{{ item.productname }}</td>
           <td>{{ item.productcode }}</td>
-          <td>
-            <input type="text" [(ngModel)]="item.shortname" />
-          </td>
+          <td>{{ item.shortname }}</td>
           <td>{{ item.brandname }}</td>
-          <td>
-
-            <input type="text" [(ngModel)]="item.orderlevel" />
-          </td>
-          <td>
-            <input type="number" [(ngModel)]="item.mrprate" />
-          </td>
-          <td>
-            <input type="text" [(ngModel)]="item.sellingrate" />
-          </td>
-          <td>
-            <input type="text" [(ngModel)]="item.purrate" />
-          </td>
+          <td>{{ item.orderlevel }} /></td>
+          <td>{{ item.mrprate }}</td>
+          <td>{{ item.sellingrate }}</td>
+          <td>{{ item.purrate }}</td>
           <td style="text-align: center">{{ item.active }}</td>
           <td>
             <button
@@ -69,7 +56,12 @@
     <button class="btn btn-primary" (click)="changeFoc()">Add</button>
     <button class="btn btn-primary" disabled="true">Save</button>
     <button class="btn btn-primary" disabled="true">View</button>
-    <button class="btn btn-primary" disabled="true">Edit</button>
+    <button class="btn btn-primary" 
+    
+    [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 1px'}}"
+	printSectionId="print-section" ngxPrint>
+      Edit
+    </button>
     <button class="btn btn-primary" disabled="true">Clear</button>
     <button class="btn btn-primary" onclick="window.location.href='/panelmain'">
       Close

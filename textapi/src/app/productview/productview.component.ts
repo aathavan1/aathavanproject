@@ -8,13 +8,14 @@ import { product } from '../model/product'
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProductComponent } from '../product/product.component'
+import { NgxPrintModule } from 'ngx-print';
 
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-productview',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor, MatButtonModule, FormsModule],
+  imports: [ReactiveFormsModule, NgFor, MatButtonModule, FormsModule, NgxPrintModule],
   templateUrl: './productview.component.html',
   styleUrl: './productview.component.css'
 })
