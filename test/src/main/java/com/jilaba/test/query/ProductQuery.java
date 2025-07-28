@@ -9,7 +9,7 @@ public class ProductQuery {
         sb.append("select pr.productgroupcode, productgroupname, productcode, productname, pr.shortname, \n");
         sb.append("pr.qualitycode, qualityname, pr.stylecode, stylename, pr.sizecode, sizename, pieceperpack, \n");
         sb.append("orderlevel, barcode, allowdiscount, purrate, mrprate, sellingrate, barcode, hsncode, \n");
-        sb.append("taxable, taxcalc, narration, pr.active \n");
+        sb.append("taxable, taxcalc,brandcode, narration, pr.active \n");
         sb.append("from product as pr \n");
         sb.append("left join productgroup as pg on pg.productgroupcode = pr.productgroupcode \n");
         sb.append("left join qualitymaster as qm on qm.qualitycode = pr.qualitycode \n");

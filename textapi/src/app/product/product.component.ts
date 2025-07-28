@@ -5,6 +5,7 @@ import { product } from '../model/product';
 import { ProductService } from '../service/product.service'
 import { OperatorService } from '../service/operatorservice.service';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { statVariable } from '../appconstant'
 
 
 @Component({
@@ -19,7 +20,6 @@ export class ProductComponent implements OnInit {
   @ViewChild('proGroup') proGroup!: ElementRef;
   productService: ProductService = inject(ProductService);
   operatorService: OperatorService = inject(OperatorService);
-  editProduct!: product;
   editFlag = signal(true);
 
   router: ActivatedRoute = inject(ActivatedRoute)
@@ -35,27 +35,7 @@ export class ProductComponent implements OnInit {
   hsn: product[] = [];
 
 
-  productForm = new FormGroup({
-    createdby: new FormControl(''),
-    productgroupcode: new FormControl(''),
-    qualitycode: new FormControl(''),
-    stylecode: new FormControl(''),
-    sizegroupcode: new FormControl(''),
-    sizecode: new FormControl(''),
-    barcode: new FormControl(''),
-    productname: new FormControl(''),
-    shortname: new FormControl(''),
-    brandcode: new FormControl(''),
-    orderlevel: new FormControl(''),
-    pieceperpack: new FormControl(''),
-    mrprate: new FormControl(''),
-    sellingrate: new FormControl(''),
-    purrate: new FormControl(''),
-    taxable: new FormControl(''),
-    allowdiscount: new FormControl(''),
-    hsncode: new FormControl(''),
-    narration: new FormControl('')
-  })
+  productForm = statVariable.statFormGroup
 
 
 
@@ -63,7 +43,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
 
     let opercode = localStorage.getItem('opercode')
-    let textId=this.router.snapshot.paramMap.get('id')
+    let textId = this.router.snapshot.paramMap.get('id')
 
     if (textId != '12341234') {
       this.editFlag.set(false)
@@ -78,7 +58,7 @@ export class ProductComponent implements OnInit {
             this.loginOperCode = opercode == null ? '0' : opercode;
           }
         })
-      this.loadProductGroup(); 
+      this.loadProductGroup();
       setTimeout(() => {
         this.setDefaultValues();
       }, 300);
@@ -91,8 +71,7 @@ export class ProductComponent implements OnInit {
   }
   setDefaultValues() {
 
-    if (!this.editFlag()) { 
-
+    if (!this.editFlag()) {
       this.productForm.patchValue({
         productgroupcode: this.productGroup[0].productgroupcode,
         qualitycode: this.quality[0].qualitycode,
@@ -120,14 +99,10 @@ export class ProductComponent implements OnInit {
 
 
   setEditedValue(value: product) {
-    // debugger
-    console.log('edit')
-    console.log(value)
-    if (this.editProduct == null) {
-      // throw new Error('No value Found for this Product')
+    if (value == null) {
       console.log('No value Found for this Product')
       return;
-    } 
+    }
 
     this.productForm.patchValue({
       productgroupcode: value.productgroupcode,
@@ -146,6 +121,7 @@ export class ProductComponent implements OnInit {
       narration: value.narration,
       pieceperpack: value.pieceperpack,
       productname: value.productname,
+      productcode:value.productcode,
       shortname: value.shortname,
       orderlevel: value.orderlevel
     })
@@ -196,7 +172,10 @@ export class ProductComponent implements OnInit {
 
   changeFoc() {
     // console.log(this.productForm.value)
-    this.proGroup.nativeElement.focus();
+    // this.proGroup.nativeElement.focus();
+
+    console.log(this.productForm.value)
+
   }
 
   async saveData() {
@@ -247,7 +226,6 @@ export class ProductComponent implements OnInit {
   }
 
   public productEdit(value: product) {
-    this.editProduct = value;
     this.editFlag.set(true)
 
     setTimeout(() => {
