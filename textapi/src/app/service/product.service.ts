@@ -57,7 +57,7 @@ export class ProductService {
     return await this.httpClient.delete(this.productEntryApi + 'delete/' + productCode)
   }
 
-  async updateProduct(product:product):Promise<Observable<any>>{
+  async updateProduct(product:any):Promise<Observable<any>>{
     const urls = this.productEntryApi + 'update'
     return await this.httpClient.put(urls,product)
   }

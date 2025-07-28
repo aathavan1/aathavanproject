@@ -121,7 +121,7 @@ export class ProductComponent implements OnInit {
       narration: value.narration,
       pieceperpack: value.pieceperpack,
       productname: value.productname,
-      productcode:value.productcode,
+      productcode: value.productcode,
       shortname: value.shortname,
       orderlevel: value.orderlevel
     })
@@ -209,13 +209,26 @@ export class ProductComponent implements OnInit {
         createdby: localStorage.getItem('opercode')
       })
 
-      const datas = this.productForm.value;
-      (await this.productService.saveProduct(datas)).subscribe(
-        data => {
-          console.log(data)
-        }
-      )
+      if (!this.editFlag()) {
+        const datas = this.productForm.value;
+        (await this.productService.saveProduct(datas)).subscribe(
+          data => {
+            console.log(data)
+          }
+        )
+      }
+      else {
+        const datas = this.productForm.value;
+        (await this.productService.updateProduct(datas)).subscribe(
+          data => {
+            console.log(data)
+          }
+        )
+
+      }
       window.alert('Saves Sucessfully')
+      console.log(this.productForm.value.productcode)
+      this.editFlag.set(false)
       this.setDefaultValues();
       // this.editedState=false;
 
