@@ -21,6 +21,7 @@ export class ProductComponent implements OnInit {
   productService: ProductService = inject(ProductService);
   operatorService: OperatorService = inject(OperatorService);
   editFlag = signal(true);
+  dialouge = new statVariable();
 
   router: ActivatedRoute = inject(ActivatedRoute)
   routerNav: Router = inject(Router)
@@ -178,30 +179,50 @@ export class ProductComponent implements OnInit {
 
   }
 
+
   async saveData() {
     try {
       if (this.productForm.value.barcode?.length == 0) {
-        window.alert('BarCode Should not be Empty')
+        this.dialouge.openMatDialouge('BarCode Should not be Empty')
         return;
       }
       else if (this.productForm.value.productname?.length == 0) {
-        window.alert('ProductName Should not be Empty')
+        this.dialouge.openMatDialouge('ProductName Should not be Empty')
         return;
       }
 
       else if (this.productForm.value.mrprate?.length == 0) {
-        window.alert('MRP Rate Should not be Empty')
+        this.dialouge.openMatDialouge('MRP Rate Should not be Empty')
+        return;
+      }
+      else if (isNaN(Number(this.productForm.value.mrprate))) {
+        this.dialouge.openMatDialouge('Enter Valid MRP Rate')
         return;
       }
 
-
       else if (this.productForm.value.purrate?.length == 0) {
-        window.alert('Pur Rate Should not be Empty')
+        this.dialouge.openMatDialouge('Pur Rate Should not be Empty')
+        return;
+      }
+
+      else if (isNaN(Number(this.productForm.value.purrate))) {
+        this.dialouge.openMatDialouge('Enter Valid Purchase Rate')
         return;
       }
 
       else if (this.productForm.value.sellingrate?.length == 0) {
-        window.alert('Selling Rate Should not be Empty')
+        this.dialouge.openMatDialouge('Selling Rate Should not be Empty')
+        return;
+      }
+
+
+      else if (isNaN(Number(this.productForm.value.sellingrate))) {
+        this.dialouge.openMatDialouge('Enter Valid Selling Rate')
+        return;
+      }
+
+      else if (isNaN(Number(this.productForm.value.pieceperpack))) {
+        this.dialouge.openMatDialouge('Enter Valid Pieces')
         return;
       }
 

@@ -115,17 +115,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public void updateProduct(Product product) throws Exception {
-        Transaction transaction = null;
-        try {
-            transaction = new Transaction();
-            transaction.begin(new JdbcTemplate(rathmaster));
+//        Transaction transaction = null;
+//        try {
+//            transaction = new Transaction();
+//            transaction.begin(new JdbcTemplate(rathmaster));
             productDao.updateProduct(mapper.convertValue(product, HashMap.class));
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null)
-                transaction.rollback();
-            throw e;
-        }
+//            transaction.commit();
+//        } catch (Exception e) {
+//            if (transaction != null)
+//                transaction.rollback();
+//            throw e;
+//        }
     }
 
 }

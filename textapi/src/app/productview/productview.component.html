@@ -24,7 +24,7 @@
           <td>{{ item.productcode }}</td>
           <td>{{ item.shortname }}</td>
           <td>{{ item.brandname }}</td>
-          <td>{{ item.orderlevel }} /></td>
+          <td>{{ item.orderlevel }}</td>
           <td>{{ item.mrprate }}</td>
           <td>{{ item.sellingrate }}</td>
           <td>{{ item.purrate }}</td>
@@ -56,11 +56,11 @@
     <button class="btn btn-primary" (click)="changeFoc()">Add</button>
     <button class="btn btn-primary" disabled="true">Save</button>
     <button class="btn btn-primary" disabled="true">View</button>
-    <button class="btn btn-primary" 
-    
-    [printStyle]="{h1 : {'color': 'red'}, h2 : {'border': 'solid 1px'}}"
-	printSectionId="print-section" ngxPrint>
-      Edit
+    <button
+      class="btn btn-primary"
+      (click)="printPdf()"
+    >
+      Print
     </button>
     <button class="btn btn-primary" disabled="true">Clear</button>
     <button class="btn btn-primary" onclick="window.location.href='/panelmain'">

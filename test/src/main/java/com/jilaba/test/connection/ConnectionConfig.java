@@ -30,7 +30,7 @@ public class ConnectionConfig {
             hikariDataSource.setJdbcUrl("jdbc:mysql://192.168.1.126:3306/" + dbName);
             hikariDataSource.setUsername("jilaba");
             hikariDataSource.setPassword("jil@123");
-            hikariDataSource.getConnection();
+            hikariDataSource.getConnection();   
             return hikariDataSource;
         } catch (Exception e) {
             e.printStackTrace();

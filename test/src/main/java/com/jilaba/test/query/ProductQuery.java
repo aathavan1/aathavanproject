@@ -15,7 +15,7 @@ public class ProductQuery {
         sb.append("left join qualitymaster as qm on qm.qualitycode = pr.qualitycode \n");
         sb.append("left join stylemaster as sm on sm.stylecode = pr.stylecode \n");
         sb.append("left join size as sz on sz.sizecode = pr.sizecode \n");
-        sb.append("where pr.updatedby = 1212 \n");
+        sb.append("where pr.updatedby = 1212 order by productcode \n");
         return sb.toString();
     }
 

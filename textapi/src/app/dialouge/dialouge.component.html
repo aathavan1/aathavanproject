@@ -1,14 +1,14 @@
 <div class="dialouge">
   <div style="padding: 20px">
-    <p>Product Deleted Sucessfully!!!...</p>
+    <p>{{ data.message }}</p>
   </div>
-  <div class="btn-edit-delete"> 
+  <div class="btn-edit-delete">
     <button
       mat-button
       mat-dialog-close
       cdkfocusinitial
-      (click)="setTrue()"
-      style="width: 15vw;"
+      (click)="dispose()"
+      style="width: 15vw"
     >
       Ok
     </button>
